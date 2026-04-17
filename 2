@@ -1,0 +1,78 @@
+-- remove old
+if game.CoreGui:FindFirstChild("TaniaUI") then
+    game.CoreGui.TaniaUI:Destroy()
+end
+
+local gui = Instance.new("ScreenGui", game.CoreGui)
+gui.Name = "TaniaUI"
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 210, 0, 240)
+frame.Position = UDim2.new(0.4,0,0.25,0)
+frame.BackgroundColor3 = Color3.fromRGB(28,28,28)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0,6)
+
+-- top bar
+local top = Instance.new("Frame", frame)
+top.Size = UDim2.new(1,0,0,26)
+top.BackgroundColor3 = Color3.fromRGB(22,22,22)
+top.BorderSizePixel = 0
+
+local topCorner = Instance.new("UICorner", top)
+topCorner.CornerRadius = UDim.new(0,6)
+
+-- title
+local title = Instance.new("TextLabel", top)
+title.Size = UDim2.new(1,0,1,0)
+title.BackgroundTransparency = 1
+title.Text = "Script"
+title.Font = Enum.Font.Gotham
+title.TextSize = 14
+title.TextColor3 = Color3.fromRGB(255,255,255)
+
+-- toggle button
+local toggle = Instance.new("TextButton", top)
+toggle.Size = UDim2.new(0,22,0,20)
+toggle.Position = UDim2.new(1,-26,0,3)
+toggle.Text = "v"
+toggle.BackgroundColor3 = Color3.fromRGB(35,35,35)
+toggle.TextColor3 = Color3.fromRGB(255,255,255)
+toggle.BorderSizePixel = 0
+
+local tcorner = Instance.new("UICorner", toggle)
+tcorner.CornerRadius = UDim.new(0,4)
+
+-- content area
+local content = Instance.new("Frame", frame)
+content.Size = UDim2.new(1,0,1,-26)
+content.Position = UDim2.new(0,0,0,26)
+content.BackgroundTransparency = 1
+
+-- line style background (pic er moto feel)
+local line = Instance.new("Frame", content)
+line.Size = UDim2.new(1,-12,0,2)
+line.Position = UDim2.new(0,6,0,10)
+line.BackgroundColor3 = Color3.fromRGB(40,40,40)
+line.BorderSizePixel = 0
+
+-- minimize system
+local minimized = false
+
+toggle.MouseButton1Click:Connect(function()
+    minimized = not minimized
+    
+    if minimized then
+        frame.Size = UDim2.new(0,210,0,26)
+        content.Visible = false
+        toggle.Text = "^"
+    else
+        frame.Size = UDim2.new(0,210,0,240)
+        content.Visible = true
+        toggle.Text = "v"
+    end
+end)
